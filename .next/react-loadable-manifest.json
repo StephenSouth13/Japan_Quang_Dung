@@ -27,6 +27,18 @@
       "static/chunks/_app-pages-browser_node_modules_pnpm_next_15_2_4__babel_core_7_2_a444ced6577a6d484be4b7826216-b10824.js"
     ]
   },
+  "..\\node_modules\\.pnpm\\next@15.2.4_@babel+core@7.2_a444ced6577a6d484be4b78262161bbc\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
+    "id": "..\\node_modules\\.pnpm\\next@15.2.4_@babel+core@7.2_a444ced6577a6d484be4b78262161bbc\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app",
+    "files": [
+      "static/chunks/_pages-dir-browser_node_modules_pnpm_next_15_2_4__babel_core_7_2_a444ced6577a6d484be4b7826216-3065fe.js"
+    ]
+  },
+  "..\\node_modules\\.pnpm\\next@15.2.4_@babel+core@7.2_a444ced6577a6d484be4b78262161bbc\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
+    "id": "..\\node_modules\\.pnpm\\next@15.2.4_@babel+core@7.2_a444ced6577a6d484be4b78262161bbc\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error",
+    "files": [
+      "static/chunks/_pages-dir-browser_node_modules_pnpm_next_15_2_4__babel_core_7_2_a444ced6577a6d484be4b7826216-8379a1.js"
+    ]
+  },
   "contexts\\CMSContext.tsx -> ../utils/mockCMSService": {
     "id": "contexts\\CMSContext.tsx -> ../utils/mockCMSService",
     "files": [
