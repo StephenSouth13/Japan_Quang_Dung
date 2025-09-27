@@ -6,27 +6,27 @@ import { ImageWithFallback } from "./figma/ImageWithFallback"
 const teachers = [
   {
     id: 1,
-    name: "Sensei Tanaka Hiroshi",
+    name: "Thầy Nguyễn Quang Triệu",
     position: "Giám đốc học thuật",
-    speciality: "JLPT N5-N1, Văn hóa Nhật",
-    experience: "15 năm",
+    speciality: "JLPT N2",
+    experience: "6 năm",
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXBhbmVzZSUyMG1hbiUyMHRlYWNoZXJ8ZW58MXx8fHwxNzU3NzUzOTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
     description:
-      "Với hơn 15 năm kinh nghiệm giảng dạy, Sensei Tanaka đã đào tạo hàng nghìn học viên Việt Nam đạt chứng chỉ JLPT và thành công trong công việc tại Nhật Bản.",
-    achievements: ["Thạc sĩ Ngôn ngữ học Nhật Bản", "Chứng chỉ giảng dạy quốc tế", "Tác giả 3 cuốn sách tiếng Nhật"],
+      " 6 năm kinh nghiệm giảng dạy.",
+    achievements: [" Cử nhân trường Đại học Hoa Sen", "chuyên ngành PR", "Nhà sáng lập TNQDO", "Thực tập biên tập viên tại Báo Tuổi Trẻ TP.HCM", "Biên dịch viên của nhiều bộ manga, anime, điển hình có Evangelion"],
   },
   {
     id: 2,
-    name: "Sensei Yamamoto Yuki",
-    position: "Giáo viên chính",
-    speciality: "Giao tiếp kinh doanh, Keigo",
-    experience: "10 năm",
+    name: "Thầy Lê Đình Tân",
+    position: "Giáo viên",
+    speciality: "JLPT N2",
+    experience: "2 năm",
     image:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXBhbmVzZSUyMHdvbWFuJTIwdGVhY2hlcnxlbnwxfHx8fDE3NTc3NTM5NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
     description:
-      "Chuyên gia về tiếng Nhật kinh doanh và văn hóa công sở Nhật Bản. Sensei Yuki từng làm việc tại nhiều tập đoàn lớn trước khi chuyển sang giảng dạy.",
-    achievements: ["MBA tại Nhật Bản", "10 năm kinh nghiệm doanh nghiệp", "Chuyên gia văn hóa công sở"],
+      "Đã được đào tạo Nghiệp vụ dạy tiếng Nhật chuyên nghiệp. Làm việc tại Công ty TNHH Hyogo Shoes. Nhân viên phục vụ tại Hoshi Sushi & Bar.",
+    achievements: ["2 năm kinh nghiệm giảng dạy"],
   },
   {
     id: 3,

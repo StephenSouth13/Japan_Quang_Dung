@@ -88,17 +88,17 @@ export function Footer() {
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-primary" />
                 <div>
-                  <p>123 Nguyễn Huệ, Quận 1</p>
-                  <p>TP. Hồ Chí Minh</p>
+                  <p>2B Hoàng Ngọc Phách - P. Phú Thọ Hòa - Q. Tân Phú - TP.HCM</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary" />
-                <p>(028) 3825 1234</p>
+                <p>Mr. Triệu - Giám đốc chương trình: (+84) 901 189 399</p>
+                <p>Mr. Hưng - Thư ký chương trình & CSKH: (+84) 939 734 210</p>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary" />
-                <p>info@Quang Dũng-center.vn</p>
+                <p>otori.agimi@gmail.com</p>
               </div>
             </div>
           </div>

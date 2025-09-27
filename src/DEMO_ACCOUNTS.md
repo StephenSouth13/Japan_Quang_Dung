@@ -5,7 +5,7 @@ Dưới đây là thông tin các tài khoản demo để test hệ thống vớ
 ## 🔴 Admin (Quản trị viên)
 
 - **Email:** `admin@japancenter.demo`
-- **Mật khẩu:** `   `
+- **Mật khẩu:** `Admin123!@#`
 - **Họ tên:** Nguyễn Văn Admin
 - **Quyền truy cập:**
   - ✅ Tất cả chức năng của hệ thống
