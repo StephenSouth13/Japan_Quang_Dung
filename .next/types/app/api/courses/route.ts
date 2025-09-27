@@ -1,4 +1,4 @@
-// File: D:\Japan_Pro_Plus-main\Japan_Pro_Plus-main\app\api\courses\route.ts
+// File: D:\Website\Quang_Dung_Center\Japan_Quang_Dung\app\api\courses\route.ts
 import * as entry from '../../../../../app/api/courses/route.js'
 import type { NextRequest } from 'next/server.js'
 

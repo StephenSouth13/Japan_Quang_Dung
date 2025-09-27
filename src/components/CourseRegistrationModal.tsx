@@ -1,49 +1,23 @@
-import React, { useState } from "react";
+"use client";
+
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { Badge } from "./ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "./ui/tabs";
-import {
-  Check,
-  Copy,
-  CreditCard,
-  User,
-  Mail,
-  Phone,
-  MapPin,
-  FileText,
-} from "lucide-react";
 import { toast } from "sonner";
-import { useAuth } from "../contexts/AuthContext";
-import { useNotifications } from "../contexts/NotificationContext";
-import { AuthModal } from "./AuthModal";
-
-interface Course {
-  id: number;
-  title: string;
-  price: string;
-  duration: string;
-  level: string;
-}
+import { Loader2, Send } from "lucide-react";
+import { Course } from "@/interfaces/course"; // Import interface Course từ file đã chia sẻ
 
 interface CourseRegistrationModalProps {
   course: Course;
@@ -54,531 +28,160 @@ export function CourseRegistrationModal({
   course,
   children,
 }: CourseRegistrationModalProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState("info");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [registrationId, setRegistrationId] =
-    useState<string>("");
-  const { user } = useAuth();
-  const { addNotification } = useNotifications();
-
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
+    name: "",
     phone: "",
-    address: "",
-    experience: "",
-    motivation: "",
-    paymentMethod: "bank_transfer",
+    email: "",
+    message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  // Auto-fill user data if logged in
-  React.useEffect(() => {
-    if (user) {
-      setFormData((prev) => ({
-        ...prev,
-        fullName: user.user_metadata?.fullName || "",
-        email: user.email || "",
-        phone: user.user_metadata?.phone || "",
-        address: user.user_metadata?.address || "",
-      }));
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const validateForm = () => {
+    const { name, phone, email } = formData;
+    if (!name || !phone || !email) {
+      toast.error("Vui lòng điền đầy đủ thông tin bắt buộc.");
+      return false;
     }
-  }, [user]);
-
-  const bankInfo = {
-    bankName: "Ngân hàng Vietcombank",
-    accountNumber: "1234567890",
-    accountName: "TRUNG TAM TIENG NHAT Quang Dũng",
-    branch: "Chi nhánh Quận 1",
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Vui lòng nhập email hợp lệ.");
+      return false;
+    }
+    return true;
   };
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast.success("Đã sao chép vào clipboard!");
-  };
-
-  const handleSubmitRegistration = async () => {
-    if (!user) {
-      toast.error("Vui lòng đăng nhập để đăng ký khóa học!");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) {
       return;
     }
 
-    if (
-      !formData.fullName ||
-      !formData.email ||
-      !formData.phone
-    ) {
-      toast.error("Vui lòng điền đầy đủ thông tin bắt buộc!");
-      return;
-    }
-
-    setIsSubmitting(true);
-
+    setLoading(true);
     try {
-      const registrationData = {
-        ...formData,
-        courseId: course.id,
-        courseTitle: course.title,
-        coursePrice: course.price,
-        userId: user.id,
-        registeredAt: new Date().toISOString(),
-        status: "pending_payment",
-      };
-
-      const response = await fetch(
-        `https://${await import("../utils/supabase/info").then((m) => m.projectId)}.supabase.co/functions/v1/make-server-2c1a01cc/register-course`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${await import("../utils/supabase/info").then((m) => m.publicAnonKey)}`,
-          },
-          body: JSON.stringify(registrationData),
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error("Đăng ký thất bại");
-      }
-
-      const result = await response.json();
-      setRegistrationId(result.registrationId);
-      setCurrentStep("payment");
-      
-      // Add notification
-      addNotification({
-        title: "Đăng ký khóa học thành công!",
-        message: `Bạn đã đăng ký thành công khóa học "${course.title}". Mã đăng ký: ${result.registrationId}. Vui lòng thanh toán để hoàn tất.`,
-        type: "success",
-        actionUrl: "#payment",
-        actionText: "Thanh toán ngay"
+      // Gửi dữ liệu đăng ký
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          courseId: course.id,
+          courseTitle: course.title,
+        }),
       });
-      
-      toast.success(
-        "Đăng ký thành công! Vui lòng thanh toán để hoàn tất.",
-      );
-    } catch (error) {
-      console.error("Registration error:", error);
-      toast.error(
-        "Có lỗi xảy ra khi đăng ký. Vui lòng thử lại!",
-      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast.success("Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm.");
+        setOpen(false); // Đóng modal sau khi gửi thành công
+        setFormData({ name: "", phone: "", email: "", message: "" }); // Reset form
+      } else {
+        throw new Error(data.error || "Gửi đăng ký không thành công.");
+      }
+    } catch (error: any) {
+      toast.error(error.message);
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
-
-  const handlePaymentConfirm = () => {
-    // Add notification for payment confirmation
-    addNotification({
-      title: "Đã ghi nhận thanh toán",
-      message: `Chúng tôi đã ghi nhận việc thanh toán cho khóa học "${course.title}". Chúng tôi sẽ xác nhận trong vòng 24h và gửi thông tin lớp học qua email.`,
-      type: "info"
-    });
-    
-    toast.success(
-      "Cảm ơn bạn đã đăng ký! Chúng tôi sẽ xác nhận thanh toán trong vòng 24h.",
-    );
-    setIsOpen(false);
-    setCurrentStep("info");
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      address: "",
-      experience: "",
-      motivation: "",
-      paymentMethod: "bank_transfer",
-    });
-  };
-
-  // Show login modal if user is not authenticated
-  if (!user) {
-    return (
-      <AuthModal defaultTab="signin">{children}</AuthModal>
-    );
-  }
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <CreditCard className="w-5 h-5" />
-            Đăng ký khóa học: {course.title}
-          </DialogTitle>
+          <DialogTitle>Đăng ký khóa học</DialogTitle>
+          <DialogDescription>
+            Điền thông tin của bạn để được tư vấn chi tiết về khóa học{" "}
+            <span className="font-bold text-primary">{course.title}</span>.
+          </DialogDescription>
         </DialogHeader>
-
-        <Tabs
-          value={currentStep}
-          onValueChange={setCurrentStep}
-        >
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="info">
-              Thông tin cá nhân
-            </TabsTrigger>
-            <TabsTrigger
-              value="payment"
-              disabled={!registrationId}
-            >
-              Thanh toán
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="info" className="space-y-6">
-            {/* Course Info */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">
-                  Thông tin khóa học
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="text-sm text-muted-foreground">
-                      Tên khóa học:
-                    </span>
-                    <p className="font-medium">
-                      {course.title}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-muted-foreground">
-                      Trình độ:
-                    </span>
-                    <Badge variant="secondary">
-                      {course.level}
-                    </Badge>
-                  </div>
-                  <div>
-                    <span className="text-sm text-muted-foreground">
-                      Thời gian:
-                    </span>
-                    <p className="font-medium">
-                      {course.duration}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-muted-foreground">
-                      Học phí:
-                    </span>
-                    <p className="font-medium text-primary">
-                      {course.price}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Personal Information Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <User className="w-5 h-5" />
-                  Thông tin cá nhân
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Họ và tên{" "}
-                      <span className="text-destructive">
-                        *
-                      </span>
-                    </label>
-                    <Input
-                      value={formData.fullName}
-                      onChange={(e) =>
-                        handleInputChange(
-                          "fullName",
-                          e.target.value,
-                        )
-                      }
-                      placeholder="Nhập họ và tên đầy đủ"
-                      disabled={!!user?.user_metadata?.fullName}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Số điện thoại{" "}
-                      <span className="text-destructive">
-                        *
-                      </span>
-                    </label>
-                    <Input
-                      value={formData.phone}
-                      onChange={(e) =>
-                        handleInputChange(
-                          "phone",
-                          e.target.value,
-                        )
-                      }
-                      placeholder="Nhập số điện thoại"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Email{" "}
-                    <span className="text-destructive">*</span>
-                  </label>
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      handleInputChange("email", e.target.value)
-                    }
-                    placeholder="Nhập địa chỉ email"
-                    disabled={!!user?.email}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Địa chỉ
-                  </label>
-                  <Input
-                    value={formData.address}
-                    onChange={(e) =>
-                      handleInputChange(
-                        "address",
-                        e.target.value,
-                      )
-                    }
-                    placeholder="Nhập địa chỉ hiện tại"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Kinh nghiệm học tiếng Nhật
-                  </label>
-                  <Textarea
-                    value={formData.experience}
-                    onChange={(e) =>
-                      handleInputChange(
-                        "experience",
-                        e.target.value,
-                      )
-                    }
-                    placeholder="Mô tả kinh nghiệm học tiếng Nhật của bạn (nếu có)"
-                    rows={3}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Mục tiêu học tập
-                  </label>
-                  <Textarea
-                    value={formData.motivation}
-                    onChange={(e) =>
-                      handleInputChange(
-                        "motivation",
-                        e.target.value,
-                      )
-                    }
-                    placeholder="Chia sẻ mục tiêu và động lực học tiếng Nhật của bạn"
-                    rows={3}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Họ tên *
+              </Label>
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="col-span-3"
+                disabled={loading}
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="phone" className="text-right">
+                Điện thoại *
+              </Label>
+              <Input
+                id="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="col-span-3"
+                disabled={loading}
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="email" className="text-right">
+                Email *
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="col-span-3"
+                disabled={loading}
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="message" className="text-right">
+                Ghi chú
+              </Label>
+              <Textarea
+                id="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Ví dụ: Tôi muốn học vào buổi tối..."
+                className="col-span-3"
+                disabled={loading}
+              />
+            </div>
+          </div>
+          <DialogFooter className="flex-row sm:justify-between justify-end gap-2">
+            <DialogClose asChild>
+              <Button type="button" variant="ghost" disabled={loading}>
+                Hủy
+              </Button>
+            </DialogClose>
             <Button
-              onClick={handleSubmitRegistration}
-              disabled={isSubmitting}
-              className="w-full"
-              size="lg"
+              type="submit"
+              disabled={loading}
+              className="w-auto min-w-[120px]"
             >
-              {isSubmitting
-                ? "Đang xử lý..."
-                : "Tiếp tục thanh toán"}
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Đang gửi...
+                </>
+              ) : (
+                <>
+                  <Send className="mr-2 h-4 w-4" />
+                  Gửi đăng ký
+                </>
+              )}
             </Button>
-          </TabsContent>
-
-          <TabsContent value="payment" className="space-y-6">
-            {/* Registration Success */}
-            <Card className="border-green-200 bg-green-50">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                    <Check className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-green-800">
-                      Đăng ký thành công!
-                    </h3>
-                    <p className="text-sm text-green-600">
-                      Mã đăng ký: {registrationId}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Payment Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <CreditCard className="w-5 h-5" />
-                  Thông tin thanh toán
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-blue-800 mb-3">
-                    Thông tin chuyển khoản
-                  </h4>
-
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-blue-600">
-                        Ngân hàng:
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">
-                          {bankInfo.bankName}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            copyToClipboard(bankInfo.bankName)
-                          }
-                        >
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-blue-600">
-                        Số tài khoản:
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">
-                          {bankInfo.accountNumber}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            copyToClipboard(
-                              bankInfo.accountNumber,
-                            )
-                          }
-                        >
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-blue-600">
-                        Tên tài khoản:
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">
-                          {bankInfo.accountName}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            copyToClipboard(
-                              bankInfo.accountName,
-                            )
-                          }
-                        >
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-blue-600">
-                        Chi nhánh:
-                      </span>
-                      <span className="font-medium">
-                        {bankInfo.branch}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-center pt-2 border-t border-blue-200">
-                      <span className="text-sm text-blue-600">
-                        Số tiền:
-                      </span>
-                      <span className="font-bold text-lg text-blue-800">
-                        {course.price}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-blue-600">
-                        Nội dung CK:
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">
-                          Quang Dũng {registrationId}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            copyToClipboard(
-                              `Quang Dũng ${registrationId}`,
-                            )
-                          }
-                        >
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-yellow-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-yellow-800 mb-2">
-                    Lưu ý quan trọng:
-                  </h4>
-                  <ul className="text-sm text-yellow-700 space-y-1">
-                    <li>
-                      • Vui lòng chuyển khoản đúng số tiền và
-                      ghi đúng nội dung
-                    </li>
-                    <li>
-                      • Chúng tôi sẽ xác nhận thanh toán trong
-                      vòng 24h
-                    </li>
-                    <li>
-                      • Sau khi xác nhận, bạn sẽ nhận được thông
-                      tin lớp học qua email
-                    </li>
-                    <li>
-                      • Liên hệ (028) 3825 1234 nếu cần hỗ trợ
-                    </li>
-                  </ul>
-                </div>
-
-                <Button
-                  onClick={handlePaymentConfirm}
-                  className="w-full"
-                  size="lg"
-                >
-                  Tôi đã chuyển khoản
-                </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
