@@ -1,12 +1,8 @@
-<<<<<<< Updated upstream
-// File: D:\Website\Quang_Dung_Center\Japan_Quang_Dung\app\api\courses\route.ts
-=======
-// File: D:\MSC\JP_Center\Japan_Quang_Dung\app\api\courses\route.ts
->>>>>>> Stashed changes
-import * as entry from '../../../../../app/api/courses/route.js'
+// File: D:\MSC\JP_Center\Japan_Quang_Dung\app\api\posts\route.ts
+import * as entry from '../../../../../app/api/posts/route.js'
 import type { NextRequest } from 'next/server.js'
 
-type TEntry = typeof import('../../../../../app/api/courses/route.js')
+type TEntry = typeof import('../../../../../app/api/posts/route.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }

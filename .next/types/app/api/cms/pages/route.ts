@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 // File: D:\Website\Quang_Dung_Center\Japan_Quang_Dung\app\api\cms\pages\route.ts
+=======
+// File: D:\MSC\JP_Center\Japan_Quang_Dung\app\api\cms\pages\route.ts
+>>>>>>> Stashed changes
 import * as entry from '../../../../../../app/api/cms/pages/route.js'
 import type { NextRequest } from 'next/server.js'
 
