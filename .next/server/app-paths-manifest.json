@@ -1,10 +1,6 @@
 {
-<<<<<<< HEAD
+  "/_not-found/page": "app/_not-found/page.js",
   "/api/cms/pages/route": "app/api/cms/pages/route.js",
   "/api/courses/route": "app/api/courses/route.js",
   "/page": "app/page.js"
-=======
-  "/page": "app/page.js",
-  "/admin/page": "app/admin/page.js"
->>>>>>> 35e84118f06706758294888ff7807852bebb815f
 }

@@ -7,18 +7,12 @@ const teachers = [
   {
     id: 1,
     name: "Thầy Nguyễn Quang Triệu",
-<<<<<<< HEAD
     position: "Giám đốc chương trình, giáo viên",
     speciality: "Luyện thi JLPT, Văn hóa Nhật",
-=======
-    position: "Giám đốc học thuật",
-    speciality: "JLPT N2",
->>>>>>> 35e84118f06706758294888ff7807852bebb815f
     experience: "6 năm",
     image:
       "https://images.unsplash.com/photo-1599305445671-ac291c9a834f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMG1hbiUyMHByb2Zlc3NvciUyMHBvcnRyYWl0fGVufDF8fHx8MTcyMjIzNDQ2NHww&ixlib=rb-4.1.0&q=80&w=1080",
     description:
-<<<<<<< HEAD
       "Với kinh nghiệm 6 năm, thầy Triệu đã giúp hàng trăm học viên chinh phục tiếng Nhật. Thầy còn là nhà sáng lập TNQDO.",
     achievements: [
       "JLPT N2",
@@ -26,35 +20,22 @@ const teachers = [
       "Thực tập Biên tập viên tại Báo Tuổi Trẻ",
       "Biên dịch viên manga, anime (Evangelion)",
     ],
-=======
-      " 6 năm kinh nghiệm giảng dạy.",
-    achievements: [" Cử nhân trường Đại học Hoa Sen", "chuyên ngành PR", "Nhà sáng lập TNQDO", "Thực tập biên tập viên tại Báo Tuổi Trẻ TP.HCM", "Biên dịch viên của nhiều bộ manga, anime, điển hình có Evangelion"],
->>>>>>> 35e84118f06706758294888ff7807852bebb815f
   },
   {
     id: 2,
     name: "Thầy Lê Đình Tân",
     position: "Giáo viên",
-<<<<<<< HEAD
     speciality: "Giao tiếp, tiếng Nhật thương mại",
-=======
-    speciality: "JLPT N2",
->>>>>>> 35e84118f06706758294888ff7807852bebb815f
     experience: "2 năm",
     image:
       "https://images.unsplash.com/photo-1520330138959-1e43e915f3e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHByb2Zlc3NvciUyMHJlbGF4ZWQlMjBwb3J0cmFpdHxlbnwxfHx8fDE3MjIyMzQ0NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
     description:
-<<<<<<< HEAD
       "Thầy Tân được đào tạo nghiệp vụ chuyên nghiệp, có kinh nghiệm làm việc tại các công ty Nhật Bản, mang đến những bài học thực tế.",
     achievements: [
       "JLPT N2",
       "Được đào tạo Nghiệp vụ dạy tiếng Nhật chuyên nghiệp",
       "Làm việc tại Công ty TNHH Hyogo Shoes",
     ],
-=======
-      "Đã được đào tạo Nghiệp vụ dạy tiếng Nhật chuyên nghiệp. Làm việc tại Công ty TNHH Hyogo Shoes. Nhân viên phục vụ tại Hoshi Sushi & Bar.",
-    achievements: ["2 năm kinh nghiệm giảng dạy"],
->>>>>>> 35e84118f06706758294888ff7807852bebb815f
   },
   {
     id: 3,

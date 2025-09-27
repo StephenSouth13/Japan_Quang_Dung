@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // File: D:\Website\Quang_Dung_Center\Japan_Quang_Dung\app\api\courses\route.ts
-=======
-// File: D:\MSC\JP_Center\Japan_Quang_Dung\app\api\courses\route.ts
->>>>>>> 35e84118f06706758294888ff7807852bebb815f
 import * as entry from '../../../../../app/api/courses/route.js'
 import type { NextRequest } from 'next/server.js'
 
