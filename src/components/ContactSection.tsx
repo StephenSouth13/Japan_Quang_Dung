@@ -206,19 +206,7 @@ export function ContactSection() {
         </div>
 
         {/* Map placeholder */}
-        <div className="mt-16">
-          <Card>
-            <CardContent className="p-0">
-              <div className="bg-muted/50 h-64 flex items-center justify-center rounded-lg">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground">Bản đồ vị trí trung tâm</p>
-                  <p className="text-sm text-muted-foreground">123 Nguyễn Huệ, Quận 1, TP.HCM</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        
       </div>
     </section>
   );

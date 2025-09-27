@@ -3,6 +3,8 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 
 export function ContactPage() {
+  const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6457007212457!2d106.6967527147712!3d10.76211429232938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1e299b9247%3A0x6d901f4a9b6c93f0!2zMTcgVHLhuqduIE5o4bqtdCBEdWF0LCBQaMOgY2sgTmdheSwgUXXhuq1uIDEsIFRwLiBI4buTIEPDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1622234567890!5m2!1svi!2s";
+  
   return (
     <div className="min-h-screen">
       {/* Page Header */}
@@ -29,7 +31,7 @@ export function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  123 Nguyễn Huệ, Quận 1<br />
+                  Số 17 Trần Nhật Duật, Q.1<br />
                   TP. Hồ Chí Minh
                 </p>
               </CardContent>
@@ -42,8 +44,8 @@ export function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  +84 123 456 789<br />
-                  +84 987 654 321
+                  +84 862 056 363<br />
+                  +84 988 938 364
                 </p>
               </CardContent>
             </Card>
@@ -55,8 +57,8 @@ export function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  info@japancenter.edu.vn<br />
-                  support@japancenter.edu.vn
+                  dungmori@gmail.com<br />
+                  support@dungmori.com
                 </p>
               </CardContent>
             </Card>
@@ -86,48 +88,17 @@ export function ContactPage() {
           <h2 className="text-3xl font-bold text-center mb-8">Vị Trí Trung Tâm</h2>
           <div className="bg-card rounded-2xl shadow-xl overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.456967240736!2d106.69971731533519!3d10.77708229232894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1c06f4e1dd%3A0x43900f1d4539a3d!2zTmd1eeG7hW4gSHXhur8sIEJlbiBOZ2hpLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1svi!2s!4v1640995200000!5m2!1svi!2s"
+              src={mapSrc}
               width="100%"
               height="400"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Vị trí Trung tâm Quang Dũng"
+              title="Vị trí Trung tâm Dungmori"
             />
           </div>
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <Card className="text-center bg-card/80 backdrop-blur-sm border-0 shadow-lg">
-              <CardContent className="p-6">
-                <MapPin className="w-8 h-8 mx-auto text-primary mb-3" />
-                <h3 className="font-bold mb-2">Cơ sở chính</h3>
-                <p className="text-muted-foreground text-sm">
-                  123 Nguyễn Huệ, Quận 1<br />
-                  TP. Hồ Chí Minh
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="text-center bg-card/80 backdrop-blur-sm border-0 shadow-lg">
-              <CardContent className="p-6">
-                <MapPin className="w-8 h-8 mx-auto text-primary mb-3" />
-                <h3 className="font-bold mb-2">Chi nhánh 1</h3>
-                <p className="text-muted-foreground text-sm">
-                  456 Lê Lợi, Quận 3<br />
-                  TP. Hồ Chí Minh
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="text-center bg-card/80 backdrop-blur-sm border-0 shadow-lg">
-              <CardContent className="p-6">
-                <MapPin className="w-8 h-8 mx-auto text-primary mb-3" />
-                <h3 className="font-bold mb-2">Chi nhánh 2</h3>
-                <p className="text-muted-foreground text-sm">
-                  789 Hai Bà Trưng, Quận 1<br />
-                  TP. Hồ Chí Minh
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          
         </div>
       </section>
     </div>
