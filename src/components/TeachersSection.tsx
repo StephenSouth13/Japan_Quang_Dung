@@ -6,39 +6,52 @@ import { ImageWithFallback } from "./figma/ImageWithFallback"
 const teachers = [
   {
     id: 1,
-    name: "Sensei Tanaka Hiroshi",
-    position: "Giám đốc học thuật",
-    speciality: "JLPT N5-N1, Văn hóa Nhật",
-    experience: "15 năm",
+    name: "Thầy Nguyễn Quang Triệu",
+    position: "Giám đốc chương trình, giáo viên",
+    speciality: "Luyện thi JLPT, Văn hóa Nhật",
+    experience: "6 năm",
     image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXBhbmVzZSUyMG1hbiUyMHRlYWNoZXJ8ZW58MXx8fHwxNzU3NzUzOTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1599305445671-ac291c9a834f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMG1hbiUyMHByb2Zlc3NvciUyMHBvcnRyYWl0fGVufDF8fHx8MTcyMjIzNDQ2NHww&ixlib=rb-4.1.0&q=80&w=1080",
     description:
-      "Với hơn 15 năm kinh nghiệm giảng dạy, Sensei Tanaka đã đào tạo hàng nghìn học viên Việt Nam đạt chứng chỉ JLPT và thành công trong công việc tại Nhật Bản.",
-    achievements: ["Thạc sĩ Ngôn ngữ học Nhật Bản", "Chứng chỉ giảng dạy quốc tế", "Tác giả 3 cuốn sách tiếng Nhật"],
+      "Với kinh nghiệm 6 năm, thầy Triệu đã giúp hàng trăm học viên chinh phục tiếng Nhật. Thầy còn là nhà sáng lập TNQDO.",
+    achievements: [
+      "JLPT N2",
+      "Cử nhân Đại học Hoa Sen, chuyên ngành PR",
+      "Thực tập Biên tập viên tại Báo Tuổi Trẻ",
+      "Biên dịch viên manga, anime (Evangelion)",
+    ],
   },
   {
     id: 2,
-    name: "Sensei Yamamoto Yuki",
-    position: "Giáo viên chính",
-    speciality: "Giao tiếp kinh doanh, Keigo",
-    experience: "10 năm",
+    name: "Thầy Lê Đình Tân",
+    position: "Giáo viên",
+    speciality: "Giao tiếp, tiếng Nhật thương mại",
+    experience: "2 năm",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXBhbmVzZSUyMHdvbWFuJTIwdGVhY2hlcnxlbnwxfHx8fDE3NTc3NTM5NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1520330138959-1e43e915f3e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHByb2Zlc3NvciUyMHJlbGF4ZWQlMjBwb3J0cmFpdHxlbnwxfHx8fDE3MjIyMzQ0NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
     description:
-      "Chuyên gia về tiếng Nhật kinh doanh và văn hóa công sở Nhật Bản. Sensei Yuki từng làm việc tại nhiều tập đoàn lớn trước khi chuyển sang giảng dạy.",
-    achievements: ["MBA tại Nhật Bản", "10 năm kinh nghiệm doanh nghiệp", "Chuyên gia văn hóa công sở"],
+      "Thầy Tân được đào tạo nghiệp vụ chuyên nghiệp, có kinh nghiệm làm việc tại các công ty Nhật Bản, mang đến những bài học thực tế.",
+    achievements: [
+      "JLPT N2",
+      "Được đào tạo Nghiệp vụ dạy tiếng Nhật chuyên nghiệp",
+      "Làm việc tại Công ty TNHH Hyogo Shoes",
+    ],
   },
   {
     id: 3,
-    name: "Sensei Nakamura Akiko",
-    position: "Giáo viên JLPT",
-    speciality: "Luyện thi JLPT N3-N1",
-    experience: "8 năm",
+    name: "Cô Phạm Thùy Tường Vy",
+    position: "Trợ giảng",
+    speciality: "Tiếng Nhật sơ cấp, giao tiếp",
+    experience: "1 năm",
     image:
-      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYXBhbmVzZSUyMHdvbWFuJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc1Nzc1Mzk3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1544717297-fa95b606d0a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHdvbWFuJTIwdGVhY2hlciUyMHBvcnRyYWl0fGVufDF8fHx8MTcyMjIzNDQ2NHww&ixlib=rb-4.1.0&q=80&w=1080",
     description:
-      "Chuyên gia luyện thi JLPT với tỷ lệ học viên đậu cao nhất tại trung tâm. Sensei Akiko có phương pháp độc đáo giúp học viên nhanh chóng nâng cao trình độ.",
-    achievements: ["Thống kê 98% học viên đậu JLPT", "Chuyên gia phương pháp học", "Nghiên cứu sư ngôn ngữ học"],
+      "Cô Vy có kinh nghiệm giao tiếp với nhiều khách hàng quốc tế, giúp học viên rèn luyện khả năng nói và nghe tự tin hơn.",
+    achievements: [
+      "JLPT N5",
+      "Được đào tạo Nghiệp vụ dạy tiếng Nhật chuyên nghiệp",
+      "Kinh nghiệm phục vụ khách hàng người Nhật, Hàn, Trung",
+    ],
   },
 ]
 
@@ -58,7 +71,7 @@ const testimonials = [
     content: "Các thầy cô rất tận tình và kiên nhẫn. Em đã đậu N2 chỉ sau 6 tháng học tại đây.",
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b47c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwd29tYW58ZW58MXx8fHwxNzU3NzUzOTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1494790108755-2616b612b47c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxzdHVkZW50JTIwd29tYW58ZW58MXx8fHwxNzU3NzUzOTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
   },
   {
     name: "Lê Minh Tuấn",
@@ -66,7 +79,7 @@ const testimonials = [
     content: "Khóa học kinh doanh giúp em tự tin giao tiếp với đối tác Nhật và thăng tiến trong công việc.",
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwYXNpYW58ZW58MXx8fHwxNzU3NzUzOTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxzdHVkZW50JTIwYXNpYW58ZW58MXx8fHwxNzU3NzUzOTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
   },
 ]
 
@@ -96,7 +109,7 @@ export function TeachersSection() {
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute top-4 right-4">
-                  <Badge className="bg-primary text-primary-foreground">{teacher.experience}</Badge>
+                  <Badge className="bg-primary text-primary-foreground">{teacher.experience} kinh nghiệm</Badge>
                 </div>
               </div>
 

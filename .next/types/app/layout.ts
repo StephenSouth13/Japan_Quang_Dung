@@ -1,4 +1,4 @@
-// File: D:\MSC\JP_Center\Japan_Quang_Dung\app\layout.tsx
+// File: D:\Website\Quang_Dung_Center\Japan_Quang_Dung\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

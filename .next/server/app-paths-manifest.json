@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-=======
   "/api/cms/pages/route": "app/api/cms/pages/route.js",
   "/api/courses/route": "app/api/courses/route.js",
-  "/api/posts/route": "app/api/posts/route.js",
->>>>>>> Stashed changes
   "/page": "app/page.js"
 }
