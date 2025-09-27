@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "target": "es5", // Thay ES2020 bằng es5 để tương thích với trình duyệt
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node", // Thay "bundler" bằng "node"
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "./ui/*": [
+        "components/ui/*"
+      ] // Thêm ánh xạ cho "./ui/*"
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ], // Loại bỏ vite.config.ts
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

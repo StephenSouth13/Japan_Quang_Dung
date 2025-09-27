@@ -1,0 +1,2 @@
+// Export the application
+export default app;
